@@ -6,9 +6,11 @@ import os
 
 # Load config file
 if os.path.exists("/vagrant/tweetled_config.yaml"):
-    cfg_file_path = file("/vagrant/tweetled_config.yaml", "r")
+    cfg_file = file("/vagrant/tweetled_config.yaml", "r")
 elif os.path.exists("./tweetled_config.yaml"):
-    cfg_file_path = file("./tweetled_config.yaml", "r")
+    cfg_file = file("./tweetled_config.yaml", "r")
+else:
+    cfg_file = None
 
 if cfg_file:
     cfg_file = yaml.load(cfg_file_path)
