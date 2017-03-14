@@ -2,11 +2,12 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import yaml
+import os
 
 # Load config file
-if file("/vagrant/tweetled_config.yaml", "r"):
+if os.path.exists("/vagrant/tweetled_config.yaml"):
     cfg_file_path = file("/vagrant/tweetled_config.yaml", "r")
-elif file("./tweetled_config.yaml", "r"):
+elif os.path.exists("./tweetled_config.yaml"):
     cfg_file_path = file("./tweetled_config.yaml", "r")
 
 if cfg_file:
