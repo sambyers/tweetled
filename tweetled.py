@@ -13,7 +13,7 @@ else:
     cfg_file = None
 
 if cfg_file:
-    cfg_file = yaml.load(cfg_file_path)
+    cfg_file = yaml.load(cfg_file)
 else:
     print "No config file found."
 
