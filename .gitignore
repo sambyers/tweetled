@@ -1,2 +1,5 @@
 # Config file #
 tweetled_config.yaml
+
+# Logs files produced by vagrant #
+*.log

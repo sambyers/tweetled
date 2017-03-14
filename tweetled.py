@@ -1,11 +1,8 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
+from yaml import load
 
-consumer_key="djoP47VjZyXX5ddC29uNZFEUO"
-consumer_secret="nod9LaQalsov4i4EAE85LflX2bhITQCiKF4U9W61cNghPNZU2N"
-
-# After the step above, you will be redirected to your app's page.
-# Create an access token under the the "Your access token" section
-access_token=""
-access_token_secret=""
+# Load config file
+cfg_file = load(tweetled_config.yaml)
+print cfg_file
