@@ -8,7 +8,7 @@ if file("/vagrant/tweetled_config.yaml", "r"):
 	cfg_file_path = file("/vagrant/tweetled_config.yaml", "r")
 elif file("./tweetled_config.yaml", "r"):
 	cfg_file_path = file("./tweetled_config.yaml", "r")
-	
+
 if cfg_file:
 	cfg_file = yaml.load(cfg_file_path)
 else:
@@ -36,6 +36,6 @@ if __name__ == '__main__':
 	    auth.set_access_token(access_token, access_token_secret)
 	except tweepy.TweepError:
 		print "Authentication failed."
-
+		
     stream = Stream(auth, l)
     stream.filter(track=['#devnetroanoke'])
