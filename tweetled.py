@@ -4,5 +4,5 @@ from tweepy import Stream
 from yaml import load
 
 # Load config file
-cfg_file = load(tweetled_config.yaml)
+cfg_file = load("/vagrant/tweetled_config.yaml")
 print cfg_file
