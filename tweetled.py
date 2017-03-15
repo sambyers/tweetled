@@ -26,9 +26,10 @@ access_token_secret = cfg_file['access_token_secret']
 class listener(StreamListener):
 
     def on_data(self, data):
-        text = data['text']
-        screen_name = data['screen_name']
-        print screen_name + " tweeted: " + text
+        # text = data['text']
+        # screen_name = data['screen_name']
+        # print screen_name + " tweeted: " + text
+        print type(data)
         return True
 
     def on_error(self, status):
