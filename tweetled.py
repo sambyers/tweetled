@@ -28,7 +28,7 @@ class listener(StreamListener):
     def on_data(self, data):
         text = data['text']
         screen_name = data['screen_name']
-        print "%s tweeted: %s" % (screen_name, text)
+        print screen_name + " tweeted: " + text
         return True
 
     def on_error(self, status):
