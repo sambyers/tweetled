@@ -57,7 +57,7 @@ class listener(StreamListener):
     def on_data(self, data):
         data = json_loads_byteified(data)
         text = data['text']
-        screen_name = data['screen_name']
+        screen_name = data['user']['screen_name']
         print screen_name + " tweeted: " + text
         return True
 
