@@ -4,6 +4,8 @@ from tweepy import Stream
 import yaml
 import os
 import byteify
+import sys
+import json
 
 # Load config file
 if os.path.exists("/vagrant/tweetled_config.yaml"):
@@ -11,12 +13,13 @@ if os.path.exists("/vagrant/tweetled_config.yaml"):
 elif os.path.exists("tweetled_config.yaml"):
     cfg_file = file("tweetled_config.yaml", "r")
 else:
-    cfg_file = None
+    cfg_file = False
 
 if cfg_file:
     cfg_file = yaml.load(cfg_file)
 else:
     print "No config file found."
+    sys.exit()
 
 consumer_key = cfg_file['consumer_key']
 consumer_secret = cfg_file['consumer_secret']
@@ -26,7 +29,7 @@ access_token_secret = cfg_file['access_token_secret']
 
 class listener(StreamListener):
     def on_data(self, data):
-        data = byteify.json_loads_byteified(data)
+        data = json.loads(data)
         text = data['text']
         screen_name = data['user']['screen_name']
         print screen_name + " tweeted: " + text
