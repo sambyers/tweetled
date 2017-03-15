@@ -3,7 +3,6 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 import yaml
 import os
-import byteify
 import sys
 import json
 
