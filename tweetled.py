@@ -56,10 +56,9 @@ def _byteify(data, ignore_dicts = False):
 class listener(StreamListener):
     def on_data(self, data):
         data = json_loads_byteified(data)
-        # text = data['text']
-        # screen_name = data['screen_name']
-        # print screen_name + " tweeted: " + text
-        print type(data)
+        text = data['text']
+        screen_name = data['screen_name']
+        print screen_name + " tweeted: " + text
         return True
 
     def on_error(self, status):
