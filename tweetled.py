@@ -31,7 +31,7 @@ access_token_secret = cfg_file['access_token_secret']
 
 def run_led_text(text=None):
     
-    if text = None:
+    if text is None:
         print 'No text to put on LED Matrix.'
     elif text:
         cmd = "sudo ~/rpi-rgb-led-matrix/python/samples/runtext.py -t '+" text "+' -m adafruit-hat --led-rows=16 -b 50"
