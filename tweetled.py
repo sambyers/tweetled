@@ -47,7 +47,7 @@ def run_led_text(my_text):
 
     offscreen_canvas = matrix.CreateFrameCanvas()
     font = graphics.Font()
-    font.LoadFont("/fonts/7x13.bdf")
+    font.LoadFont("./fonts/7x13.bdf")
     textColor = graphics.Color(random_color(), random_color(), random_color())
     pos = offscreen_canvas.width
     print my_text
