@@ -53,6 +53,7 @@ def run_led_text(my_text):
     pos = offscreen_canvas.width
 
     timestamp = time.time()
+    timediff = 0
 
     while timediff < 5:
         offscreen_canvas.Clear()
