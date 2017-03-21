@@ -9,5 +9,4 @@ https://www.adafruit.com/product/420
 
 ## Libraries
 - Tweepy, a library for the Twitter API https://github.com/tweepy/tweepy
-- Adafruit library for controlling RGB matrices https://github.com/adafruit/rpi-rgb-led-matrix
-  - aka https://github.com/hzeller/rpi-rgb-led-matrix
+- Henner Zeller library for controlling RGB matrices https://github.com/hzeller/rpi-rgb-led-matrix
