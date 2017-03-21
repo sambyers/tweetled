@@ -52,7 +52,7 @@ def run_led_text(my_text):
     textColor = graphics.Color(random_color(), random_color(), random_color())
     pos = offscreen_canvas.width
 
-    timestamp = time.time
+    timestamp = time.time()
 
     while timediff < 5:
         offscreen_canvas.Clear()
@@ -64,7 +64,7 @@ def run_led_text(my_text):
         time.sleep(0.05)
         offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
 
-        timediff = time.time - timestamp
+        timediff = time.time() - timestamp
 
 class listener(StreamListener):
     def on_data(self, data):
