@@ -52,9 +52,7 @@ def run_led_text(my_text):
     textColor = graphics.Color(random_color(), random_color(), random_color())
     pos = offscreen_canvas.width
 
-    scroll_count = 0
-
-    while scroll_count < 5:
+    while True:
         offscreen_canvas.Clear()
         len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
         pos -= 1
@@ -63,7 +61,6 @@ def run_led_text(my_text):
 
         time.sleep(0.05)
         offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
-        scroll_count += 1
 
 class listener(StreamListener):
     def on_data(self, data):
@@ -87,4 +84,4 @@ if __name__ == '__main__':
         print "Authentication failed."
 
     stream = Stream(auth, l)
-    stream.filter(track=['#devnetroanoke'])
+    stream.filter(track=['#devnetroanoke'], async=True)
