@@ -34,38 +34,48 @@ def random_color():
         color = random.randrange(0, 255)
         return color
 
+def run_led_text(text=None):
+    
+    if text = None:
+        print 'No text to put on LED Matrix.'
+    elif text:
+        cmd = "sudo /home/pi/rpi-rgb-led-matrix/python/samples/runtext.py -t '+" text "+' -m adafruit-hat --led-rows=16 -b 50"
+        cmd = shlex.split(cmd)
+        proc = subprocess32.Popen(cmd)
+        return proc
 
-def run_led_text(my_text):
 
-    # Configuration for the matrix
-    options = RGBMatrixOptions()
-    options.rows = 16
-    options.chain_length = 1
-    options.parallel = 1
-    options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+# def run_led_text(my_text):
 
-    matrix = RGBMatrix(options = options)
+#     # Configuration for the matrix
+#     options = RGBMatrixOptions()
+#     options.rows = 16
+#     options.chain_length = 1
+#     options.parallel = 1
+#     options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
 
-    offscreen_canvas = matrix.CreateFrameCanvas()
-    font = graphics.Font()
-    font.LoadFont("./fonts/7x13.bdf")
-    textColor = graphics.Color(random_color(), random_color(), random_color())
-    pos = offscreen_canvas.width
+#     matrix = RGBMatrix(options = options)
 
-    timestamp = time.time()
-    timediff = 0
+#     offscreen_canvas = matrix.CreateFrameCanvas()
+#     font = graphics.Font()
+#     font.LoadFont("./fonts/7x13.bdf")
+#     textColor = graphics.Color(random_color(), random_color(), random_color())
+#     pos = offscreen_canvas.width
 
-    while timediff < 5:
-        offscreen_canvas.Clear()
-        len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
-        pos -= 1
-        if (pos + len < 0):
-            pos = offscreen_canvas.width
+#     timestamp = time.time()
+#     timediff = 0
 
-        time.sleep(0.05)
-        offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
+#     while timediff < 15:
+#         offscreen_canvas.Clear()
+#         len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
+#         pos -= 1
+#         if (pos + len < 0):
+#             pos = offscreen_canvas.width
 
-        timediff = time.time() - timestamp
+#         time.sleep(0.05)
+#         offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
+
+#         timediff = time.time() - timestamp
 
 class listener(StreamListener):
     def on_data(self, data):
