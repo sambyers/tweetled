@@ -86,6 +86,8 @@ class listener(StreamListener):
         text = data['text']
         screen_name = data['user']['screen_name']
         msg = screen_name + " tweeted: " + text
+        if run_text:
+            run_test.terminate()
         print msg
         run_text = run_led_text(msg)
         return True
