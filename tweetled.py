@@ -101,6 +101,7 @@ class RunText(matrix_base):
         textColor = graphics.Color(random_color(), random_color(), random_color())
         pos = offscreen_canvas.width
         my_text = self.args.text
+        print my_text
 
         while True:
             offscreen_canvas.Clear()
@@ -117,7 +118,7 @@ class listener(StreamListener):
         data = json.loads(data)
         text = data['text']
         screen_name = data['user']['screen_name']
-        #print screen_name + " tweeted: " + text
+        print screen_name + " tweeted: " + text
         run_text = RunText(my_text=screen_name + " tweeted: " + text)
         return True
 
