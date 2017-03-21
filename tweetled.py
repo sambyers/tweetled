@@ -1,8 +1,8 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
-from samplebase import SampleBase
-from rgbmatrix import graphics
+from ..rpi-rgb-led-matrix.python.samples.samplebase import SampleBase
+from ..rpi-rgb-led-matrix.python.rgbmatrix import graphics
 import yaml
 import os
 import sys
