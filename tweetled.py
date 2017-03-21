@@ -69,7 +69,7 @@ class listener(StreamListener):
         screen_name = data['user']['screen_name']
         msg = screen_name + " tweeted: " + text
         print msg
-        run_text = run_led_text(msg)
+        #run_text = run_led_text(msg)
         return True
 
     def on_error(self, status):
@@ -84,4 +84,4 @@ if __name__ == '__main__':
         print "Authentication failed."
 
     stream = Stream(auth, l)
-    stream.filter(track=['#devnetroanoke'], async=True)
+    stream.filter(track=['#devnetroanoke'])
