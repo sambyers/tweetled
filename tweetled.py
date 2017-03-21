@@ -2,6 +2,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
+from threading import Thread
 import yaml
 import os
 import sys
@@ -34,33 +35,37 @@ def random_color():
         color = random.randrange(0, 255)
         return color
 
+class led_text_thread(Thread):
+    def __int__(self, *args, *kwargs):
+        super(Thread, self).__init__(*args, *kwargs)
 
-def run_led_text(my_text):
+    def process(self):
+        # Configuration for the matrix
+        options = RGBMatrixOptions()
+        options.rows = 16
+        options.chain_length = 1
+        options.parallel = 1
+        options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
 
-    # Configuration for the matrix
-    options = RGBMatrixOptions()
-    options.rows = 16
-    options.chain_length = 1
-    options.parallel = 1
-    options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+        self.matrix = RGBMatrix(options = options)
 
-    matrix = RGBMatrix(options = options)
+    def run(self):
+        offscreen_canvas = matrix.CreateFrameCanvas()
+        font = graphics.Font()
+        font.LoadFont("./fonts/7x13.bdf")
+        textColor = graphics.Color(random_color(), random_color(), random_color())
+        pos = offscreen_canvas.width
+        my_text = self.text
 
-    offscreen_canvas = matrix.CreateFrameCanvas()
-    font = graphics.Font()
-    font.LoadFont("./fonts/7x13.bdf")
-    textColor = graphics.Color(random_color(), random_color(), random_color())
-    pos = offscreen_canvas.width
+        while True:
+            offscreen_canvas.Clear()
+            len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
+            pos -= 1
+            if (pos + len < 0):
+                pos = offscreen_canvas.width
 
-    while True:
-        offscreen_canvas.Clear()
-        len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
-        pos -= 1
-        if (pos + len < 0):
-            pos = offscreen_canvas.width
-
-        time.sleep(0.05)
-        offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
+            time.sleep(0.05)
+            offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
 class listener(StreamListener):
     def on_data(self, data):
@@ -69,7 +74,7 @@ class listener(StreamListener):
         screen_name = data['user']['screen_name']
         msg = screen_name + " tweeted: " + text
         print msg
-        #run_text = run_led_text(msg)
+        #run_text = run_led_text(text=msg)
         return True
 
     def on_error(self, status):
