@@ -7,7 +7,7 @@ import sys
 import json
 import time
 import argparse
-from rgbmatrix import RGBMatrix, RGBMatrixOptions
+from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 
 # Load config file
 if os.path.exists("/vagrant/tweetled_config.yaml"):
