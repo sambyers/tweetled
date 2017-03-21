@@ -1,13 +1,14 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
+from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 import yaml
 import os
 import sys
 import json
 import time
 import argparse
-from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
+import random
 
 # Load config file
 if os.path.exists("/vagrant/tweetled_config.yaml"):
