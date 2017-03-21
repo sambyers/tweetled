@@ -9,6 +9,8 @@ import json
 import time
 import argparse
 import random
+import shlex
+import subprocess32
 
 # Load config file
 if os.path.exists("/vagrant/tweetled_config.yaml"):
