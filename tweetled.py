@@ -36,6 +36,21 @@ def random_color():
         color = random.randrange(0, 255)
         return color
 
+def run_led_text(text=None):
+
+    if text is None:
+        print 'No text to put on LED Matrix.'
+        return False
+    elif text:
+        os.chdir('/home/pi/rpi-rgb-led-matrix/python/samples/')
+        cmd = "sudo ./runtext.py -t '"+ text +"' -m adafruit-hat --led-rows=16 -b 50"
+        cmd = shlex.split(cmd)
+        proc = subprocess32.Popen(cmd)
+        time.sleep(30)
+        while proc.poll() is not None:
+            proc.terminate()
+        return True
+
 
 # def run_led_text(my_text):
 
@@ -71,27 +86,15 @@ def random_color():
 
 class listener(StreamListener):
 
-    self.led_proc = None
     def on_status(self, status):
         screen_name = status.user.screen_name
         text = status.text
         msg = screen_name + " tweeted: " + text
-        self.run_text = run_led_text(msg)
-        self.led_proc = run_text
+        run_text = run_led_text(msg)
         return True
 
     def on_error(self, status):
         print('Twitter error: ' + status)
-
-    def run_led_text(self, text=None):
-        if text is None:
-            print 'No text to put on LED Matrix.'
-        elif text:
-            os.chdir('/home/pi/rpi-rgb-led-matrix/python/samples/')
-            cmd = "sudo ./runtext.py -t '"+ text +"' -m adafruit-hat --led-rows=16 -b 50"
-            cmd = shlex.split(cmd)
-            proc = subprocess32.Popen(cmd)
-            return proc
 
 if __name__ == '__main__':
     l = listener()
