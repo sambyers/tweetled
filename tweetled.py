@@ -91,10 +91,10 @@ class listener(StreamListener):
             run_text = run_led_text(msg)
         else:
             proc_poll = run_text.poll()
-            while proc_poll not None:
+            while proc_poll is not None:
                 run_text.terminate()
             run_text = run_led_text(msg)
-            
+
         return True
 
     def on_error(self, status):
