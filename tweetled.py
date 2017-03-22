@@ -90,7 +90,7 @@ class listener(StreamListener):
     def on_status(self, status):
         screen_name = status.user.screen_name
         text = status.text
-        msg = screen_name + " tweeted: " + text
+        msg = screen_name + ": " + text
         run_text = run_led_text(msg, matrix)
         return True
 
