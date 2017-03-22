@@ -32,6 +32,16 @@ consumer_secret = cfg_file['consumer_secret']
 access_token = cfg_file['access_token']
 access_token_secret = cfg_file['access_token_secret']
 
+# Configuration for the matrix
+options = RGBMatrixOptions()
+options.rows = 16
+options.chain_length = 1
+options.parallel = 1
+options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
+options.brightness = 50
+
+matrix = RGBMatrix(options = options)
+
 def random_color():
         color = random.randrange(0, 255)
         return color
@@ -54,17 +64,8 @@ def random_color():
 #         return True
 
 
-def run_led_text(my_text):
+def run_led_text(my_text, matrix):
 
-    # Configuration for the matrix
-    options = RGBMatrixOptions()
-    options.rows = 16
-    options.chain_length = 1
-    options.parallel = 1
-    options.hardware_mapping = 'adafruit-hat'  # If you have an Adafruit HAT: 'adafruit-hat'
-    options.brightness = 50
-
-    matrix = RGBMatrix(options = options)
 
     offscreen_canvas = matrix.CreateFrameCanvas()
     font = graphics.Font()
@@ -90,7 +91,7 @@ class listener(StreamListener):
         screen_name = status.user.screen_name
         text = status.text
         msg = screen_name + " tweeted: " + text
-        run_text = run_led_text(msg)
+        run_text = run_led_text(msg, matrix)
         return True
 
     def on_error(self, status):
