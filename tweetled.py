@@ -75,14 +75,14 @@ def run_led_text(my_text, matrix):
 
     timestamp = time.time()
 
-    while time.time() - timestamp < 30:
+    while time.time() - timestamp < 40:
         offscreen_canvas.Clear()
         len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
         pos -= 1
         if (pos + len < 0):
             pos = offscreen_canvas.width
 
-        time.sleep(0.05)
+        time.sleep(0.04)
         offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
 
 class listener(StreamListener):
