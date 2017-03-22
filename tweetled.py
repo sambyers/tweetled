@@ -45,10 +45,7 @@ def run_led_text(text=None):
         os.chdir('/home/pi/rpi-rgb-led-matrix/python/samples/')
         cmd = "sudo ./runtext.py -t '"+ text +"' -m adafruit-hat --led-rows=16 -b 50"
         cmd = shlex.split(cmd)
-        proc = subprocess32.Popen(cmd)
-        time.sleep(30)
-        while proc.poll() is not None:
-            proc.terminate()
+        proc = subprocess32.call(cmd, timeout=30)
         return True
 
 
