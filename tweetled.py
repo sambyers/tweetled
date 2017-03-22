@@ -82,12 +82,13 @@ def run_led_text(text=None):
 #         timediff = time.time() - timestamp
 
 class listener(StreamListener):
+
     def on_status(self, status):
         screen_name = status.user.screen_name
         text = status.text
         msg = screen_name + " tweeted: " + text
-        print msg
-        #run_text = run_led_text(msg)
+        with open('~/tweetled/tweet', 'w') as tweet_file:
+            tweet_file.write(msg)
         return True
 
     def on_error(self, status):
@@ -103,4 +104,7 @@ if __name__ == '__main__':
 
     stream = Stream(auth, l)
     stream.filter(track=['#devnetroanoke'])
-    print 'stream data:' + l.status.text
+    
+    with open('~/tweetled/tweet') as tweet_file:
+       msg = tweet_file.read()
+    run_text = run_led_text(msg)
