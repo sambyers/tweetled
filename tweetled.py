@@ -106,4 +106,4 @@ if __name__ == '__main__':
         print "Authentication failed."
 
     stream = Stream(auth, l)
-    stream.filter(track=['#devnetroanoke'])
+    stream.filter(track=['#CiscoConnectVA'])
