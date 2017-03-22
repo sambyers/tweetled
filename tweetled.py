@@ -47,6 +47,10 @@ def run_led_text(text=None):
         cmd = shlex.split(cmd)
         proc = subprocess32.Popen(cmd)
         print proc.poll()
+        try:
+            proc.wait(timeout=30)
+        except TimeoutExpired:
+            proc.kill()
         return True
 
 
