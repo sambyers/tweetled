@@ -87,7 +87,7 @@ class listener(StreamListener):
         screen_name = status.user.screen_name
         text = status.text
         msg = screen_name + " tweeted: " + text
-        with open('~/tweetled/tweet', 'w') as tweet_file:
+        with open('/home/pi/tweetled/tweet', 'w') as tweet_file:
             tweet_file.write(msg)
         return True
 
@@ -105,6 +105,6 @@ if __name__ == '__main__':
     stream = Stream(auth, l)
     stream.filter(track=['#devnetroanoke'])
     
-    with open('~/tweetled/tweet') as tweet_file:
+    with open('/home/pi/tweetled/tweet') as tweet_file:
        msg = tweet_file.read()
     run_text = run_led_text(msg)
