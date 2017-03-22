@@ -85,7 +85,7 @@ def run_led_text(my_text, matrix):
         time.sleep(0.05)
         offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
 
-    offscreen_canvas.Clear()
+    offscreen_canvas = matrix.CreateFrameCanvas()
 
 class listener(StreamListener):
 
