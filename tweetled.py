@@ -103,4 +103,4 @@ if __name__ == '__main__':
 
     stream = Stream(auth, l)
     stream.filter(track=['#devnetroanoke'])
-    print 'stream data:' + l.data
+    print 'stream data:' + stream.status.text
