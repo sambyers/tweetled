@@ -49,6 +49,7 @@ def run_led_text(text=None):
             proc = subprocess32.call(cmd, timeout=30)
         except:
             print 'exiting led text output...'
+            proc.kill()
         return True
 
 
