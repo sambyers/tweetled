@@ -45,8 +45,7 @@ def run_led_text(text=None):
         cmd = "sudo ./runtext.py -t '"+ text +"' -m adafruit-hat --led-rows=16 -b 50"
         cmd = shlex.split(cmd)
         proc = subprocess32.Popen(cmd)
-        p = proc.pid
-        return p
+        return proc
 
 
 # def run_led_text(my_text):
@@ -87,8 +86,15 @@ class listener(StreamListener):
         screen_name = status.user.screen_name
         text = status.text
         msg = screen_name + " tweeted: " + text
-        with open('/home/pi/tweetled/tweet', 'w') as tweet_file:
-            tweet_file.write(msg)
+        run_text = None
+        if run_text is None:
+            run_text = run_led_text(msg)
+        else:
+            proc_poll = run_text.poll()
+            while proc_poll not None:
+                run_text.terminate()
+            run_text = run_led_text(msg)
+            
         return True
 
     def on_error(self, status):
@@ -104,7 +110,3 @@ if __name__ == '__main__':
 
     stream = Stream(auth, l)
     stream.filter(track=['#devnetroanoke'])
-    
-    with open('/home/pi/tweetled/tweet') as tweet_file:
-       msg = tweet_file.read()
-    run_text = run_led_text(msg)
