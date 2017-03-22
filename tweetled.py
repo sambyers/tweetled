@@ -93,7 +93,7 @@ class listener(StreamListener):
         return True
 
     def on_error(self, status):
-        print('Twitter error: ' + status)
+        print('Twitter error: ' + str(status))
 
 if __name__ == '__main__':
     l = listener()
