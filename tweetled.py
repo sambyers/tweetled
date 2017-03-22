@@ -49,7 +49,7 @@ def run_led_text(text=None):
         print proc.poll()
         try:
             proc.wait(timeout=30)
-        except TimeoutExpired:
+        except:
             proc.kill()
         return True
 
