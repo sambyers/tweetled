@@ -45,7 +45,8 @@ def run_led_text(text=None):
         cmd = "sudo ./runtext.py -t '"+ text +"' -m adafruit-hat --led-rows=16 -b 50"
         cmd = shlex.split(cmd)
         proc = subprocess32.Popen(cmd)
-        return proc
+        p = proc.pid
+        return p
 
 
 # def run_led_text(my_text):
@@ -83,12 +84,14 @@ def run_led_text(text=None):
 class listener(StreamListener):
     def on_data(self, data):
         data = json.loads(data)
+        tweet_text = data.text
+        print tweet_text
         text = data['text']
         screen_name = data['user']['screen_name']
         msg = screen_name + " tweeted: " + text
         print msg
         #run_text = run_led_text(msg)
-        return msg
+        return True
 
     def on_error(self, status):
         print(status)
