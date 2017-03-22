@@ -86,7 +86,7 @@ class listener(StreamListener):
         screen_name = status.user.screen_name
         text = status.text
         msg = screen_name + " tweeted: " + text
-        run_text = None
+
         if run_text is None:
             run_text = run_led_text(msg)
         else:
