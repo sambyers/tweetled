@@ -82,12 +82,9 @@ def run_led_text(text=None):
 #         timediff = time.time() - timestamp
 
 class listener(StreamListener):
-    def on_data(self, data):
-        data = json.loads(data)
-        tweet_text = data.text
-        print tweet_text
-        text = data['text']
-        screen_name = data['user']['screen_name']
+    def on_status(self, status):
+        screen_name = status.user.screen_name
+        text = status.text
         msg = screen_name + " tweeted: " + text
         print msg
         #run_text = run_led_text(msg)
