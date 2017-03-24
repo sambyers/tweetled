@@ -1,5 +1,5 @@
 # Tweetled
-Twitter-based LED matrix streamer. The goal of this project is to have tweets with specific words or hashtags stream across the LED matrix.
+Twitter-based LED matrix streamer. The goal of this project is to have tweets with specific words or hashtags stream across the LED matrix. Built for Cisco Connect Roanoke DevNet table.
 
 ## Parts
 - Adafruit RGB Matrix HAT
